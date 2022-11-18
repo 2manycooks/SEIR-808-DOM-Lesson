@@ -1,151 +1,99 @@
-// what is the DOM?
-// Document Object Model
+// you can grab HTML elements using document.getElementBy all sorts of things. here are some examples.
 
-// utilize methods inside the document object
+// grab by ID
+const myDiv = document.getElementById('hello')
 
+// console.log(myDiv)
 
-// grab things by ID
+// grab by Class (method uses ClassName)
+const theSquares = document.getElementsByClassName('square')
 
-let myDiv = document.getElementById('hello')
+// console.log(theSquares[0])
+// console.log(theSquares[1])
 
-console.log(myDiv)
+// grab by HTML tag (div, p, h1, etc
+const theDivs = document.getElementsByTagName('div')
 
-// grab things by class
+// console.log(theDivs[0])
+// console.log(theDivs[1])
 
-let theSquares = document.getElementsByClassName('square')
+// you can also grab by CSS selectors (.class, #id, etc)
 
-console.log(theSquares[0])
-console.log(theSquares[1])
+const myDiv2 = document.querySelector('#gb')
 
-// grab things by tag
+// console.log(myDiv2)
 
-let theDivs = document.getElementsByTagName('div')
+// you can grab multiple things with querySelectorAll
 
-console.log(theDivs[0])
-console.log(theDivs[1])
+const mySquares2 = document.querySelectorAll(".square")
 
-// querySelector
+// console.log(mySquares2)
 
-// querySeletor grabs the first matching element
+// you can then change DOM elements to affect the webpage!
 
-let myDiv2 = document.querySelector('#gb')
+myDiv.style.backgroundColor= 'chartreuse'
+myDiv.style.height= '300px'
 
-console.log(myDiv2)
+myDiv.innerText = 'I love SEI'
+myDiv2.innerHTML = "<h2>I love GAbe</h2>"
 
-// querySelectorAll grabs all matching elements, returns a NodeList
+// but what if we want to change multiple things at once?
 
-let mySquaresQuery = document.querySelectorAll('.square')
-
-console.log(mySquaresQuery)
-
-// querySelector via tag
-
-let myDivsQuery = document.querySelectorAll('div')
-
-console.log(myDivsQuery[0])
-console.log(myDivsQuery[1])
-
-// changing styles
-// every HTML element has a 'style' attribute, whose possible values are ALL CSS rules.
-
-myDiv.style.backgroundColor = 'chartreuse'
-myDiv2.style.height='300px'
-
-// changing content
-
-// changing innerText
-
-myDiv.innerText = "I love SEI!"
-
-// changing innerHTML
-
-myDiv2.innerHTML = "<h2> I love GA</h2>"
-
-// changing multiple elements at once!
-
-// this won't work:
-
+//this won't work! (don't forger to comment this one out or it'll break!)
 // theSquares.style.border = "2px dashed black"
 
-// we need to iterate!
-
-for (let i=0; i < theSquares.length; i++) {
-    theSquares[i].style.border = "2px dashed black"
+// loops are the 🔑
+for(let i = 0; i < theSquares.length; i++) {
+    theSquares[i].style.border = 'dashed 2px black'
 }
 
-// reminder: getElements and querySelectorAll returns HTMLCollections & NodeLists, not arrays!
 
-// Array.from() will turn these things into arrays.
 
-// getting and setting a property directly
+// getElements return HTMLCollections. querySelectorAll returns a NodeList.
+// the difference is that HTMLCollections are dynamic, and NodeLists are static.
 
-let photo = document.querySelector('img')
+// changing element attributes
+
+const photo = document.querySelector("img")
 
 // get using property
-console.log(photo.src)
+// console.log(photo.src)
 
 // set using property
 photo.src = "https://picsum.photos/200/200"
 
-// we can use a method called getAttribute
+// get and set with the getAttribute and setAttribute methods
+photo.getAttribute('src')
+photo.setAttribute('src', "https://placebear.com/200/200")
 
-photo.getAttribute("src")
+// you can access classes of an html object using className or classList for multiple classes
+const helloDiv = document.querySelector('div');
 
-// first we get, then we set
+console.log(helloDiv.classList)
 
-photo.setAttribute("src", "https://placebear.com/200/200")
+console.log(helloDiv.classList[0]);
 
-// grabbing by CSS selectors
-
-console.log(document.querySelector('div').className)
-
-console.log(document.querySelector('div').classList)
-
-// adding to classlist
-
-let helloDiv = document.querySelector('div')
-
-console.log(helloDiv.classList[0])
-
+// you can even change the classes of an element!
 helloDiv.classList.add('yellow')
-console.log(helloDiv.classList)
 
-// check to see if a value exists
-console.log(helloDiv.classList.contains('taco'))
-
-// removing a class
 helloDiv.classList.remove('yellow')
-console.log(helloDiv.classList)
-console.log(helloDiv.className)
 
-// DOM Events
+// DOM EVENTS
 
-// Event Listener
-// can also be called event handler
+const myFunction = function(e) {
+    console.log(e.target)
+}
 
-// 3 different ways to achieve events
+const mySecondFunction = function(e) {
+    console.log('we clickin')
+}
 
-// inline (ugly)
+helloDiv.addEventListener("click", myFunction)
+helloDiv.addEventListener("click", mySecondFunction)
 
-// assign via a property (bad)
+helloDiv.removeEventListener('click', myFunction)
 
-let btn = document.querySelector('#btn')
 
-let number = 0
-
-// via the addEventListener method (good)
-
-helloDiv.addEventListener("click", function(e) {
-    console.log(e)
-})
-// event.preventDefault()
-
-let input = document.querySelector('#input')
-
-btn.addEventListener("click", function(e) {
-    console.log(input.value)
-})
-
-input.addEventListener("keyup", function(e) {
-    console.log(e.target.value)
+document.addEventListener('DOMContentLoaded', function(e) {
+    'content loaded'
 })

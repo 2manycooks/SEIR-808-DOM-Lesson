@@ -1,20 +1,12 @@
 #hello {
-    background-color: yellow;
+    background: rgb(109, 6, 157);
 }
 
 #gb {
-    background-color: orange;
+    background: rgb(196, 221, 10);
 }
 
 .square {
     height: 100px;
     width: 100px;
-}
-
-#ohNoText {
-    color: blue;
-}
-
-#ahhText {
-    color: green;
 }
